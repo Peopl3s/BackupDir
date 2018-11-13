@@ -26,7 +26,7 @@ namespace CatalogManage
                 allFiles.push_back(file);
                 logger(file);
             }
-            qDebug()<<"xyi"<<QString::fromUtf8((from_dir).string().c_str());
+            
 
         }
         else
