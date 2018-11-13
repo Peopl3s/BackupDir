@@ -1,0 +1,22 @@
+void logger(const fs::path &pa, const QString & path="D://logXyi.txt")
+{
+    QFile file(path);
+    if(file.open(QIODevice::Append))
+    {
+        QDateTime dt = QDateTime::currentDateTime();
+        QString mess{};
+        if(fs::is_directory(pa))
+        {
+
+           mess="Произошло изменение, добавлена директория"+QString::fromStdString(pa.string())+dt.toString()+"\n";
+        } else if(fs::is_regular_file(pa))
+        {
+            mess="Произошло изменение, добавлен файл"+QString::fromStdString(pa.string())+dt.toString()+"\n";
+        }
+        QTextStream writeStream(&file); // Создаем объект класса QTextStream
+        // и передаем ему адрес объекта fileOut
+                writeStream <<mess;
+                               file.close();
+    }
+
+}
